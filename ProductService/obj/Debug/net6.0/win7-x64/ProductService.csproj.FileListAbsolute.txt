@@ -1,0 +1,1 @@
+E:\master\vol2\OnlineShop\OnlineShop\ProductService\bin\Debug\net6.0\win7-x64\mscordbi.dll
