@@ -1,0 +1,178 @@
+
+  <h2>Update profile</h2>
+  
+  <form [formGroup]="updateForm" (ngSubmit)="submitForm()">
+    <mat-form-field class="form-group">
+      <label for="firstname">First Name</label>
+      <input matInput type="text" id="firstname" formControlName="Firstname" [(ngModel)]="user.firstName" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-group">
+      <label for="lastname">Last Name</label>
+      <input matInput type="text" id="lastname" formControlName="LastName" [(ngModel)]="user.lastName" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-group">
+      <label for="email">Email</label>
+      <input matInput type="email" id="email" formControlName="Email" [(ngModel)]="user.email" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-group">
+      <label for="accountBalance">Account Balance</label>
+      <input matInput type="number" id="accountBalance" formControlName="AccountBalance" [(ngModel)]="user.accountBalance" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-group">
+      <label for="password">Password</label>
+      <input matInput type="password" id="password" formControlName="Password" [(ngModel)]="user.password" required>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button type="submit" [disabled]="!updateForm.valid">Update</button>
+  </form>
+
+<button mat-raised-button color="primary" (click)="logout()">Logout</button>
+
+
+  <mat-table
+    matSort
+    [dataSource]="this.dataSource"
+    class="mat-table"
+>
+  <ng-container matColumnDef="name" class="container">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Name</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">
+      <!-- <span class="mobile-label">Naziv:</span> -->
+      {{ element.name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Quantity</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">
+      <!-- <span class="mobile-label">Tezina:</span> -->
+      {{ element.quantity }}
+    </mat-cell>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <!-- <span class="mobile-label">Opis:</span> -->
+      {{ element.description }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <!-- <span class="mobile-label">Fotografija:</span> -->
+      {{ element.price }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button
+        button mat-raised-button
+        type="button"
+        (click)="addToCart(element)"
+      >
+        Add To Cart
+        <i class="bi bi-trash"></i>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row
+    class="mat-row"
+    *matRowDef="let row; columns: displayedColumns"
+  ></mat-row>
+</mat-table>
+<mat-paginator
+  [pageSizeOptions]="[5, 10]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements"
+  #paginator
+  >
+  </mat-paginator>
+
+  
+
+  <h2>Your Cart</h2>
+<mat-table [dataSource]="cartDataSource" class="mat-table">
+  <ng-container matColumnDef="cartName">
+    <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
+    <mat-cell *matCellDef="let cartItem">{{ cartItem.name }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cartPrice">
+    <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+    <mat-cell *matCellDef="let cartItem">{{ cartItem.price }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cartAction">
+    <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+    <mat-cell *matCellDef="let cartItem">
+      <!-- Dodajte dugme za uklanjanje stavke iz korpe -->
+      <button mat-raised-button color="warn" (click)="removeFromCart(cartItem)">Remove</button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cartQuantity">
+    <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+    <mat-cell *matCellDef="let cartItem">
+      <!-- Dodajte dugmad "+" i "-" za prilagođavanje količine -->
+      <button mat-icon-button (click)="adjustCartItemQuantity(cartItem, 'increment')">
+        <mat-icon aria-label="Increment">add</mat-icon>
+      </button>
+      {{ cartItem.quantity }}
+      <button mat-icon-button (click)="adjustCartItemQuantity(cartItem, 'decrement')" [disabled]="cartItem.quantity === 1">
+        <mat-icon aria-label="Decrement">remove</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="cartDisplayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: cartDisplayedColumns"></mat-row>
+</mat-table>
+
+<div class="cart-total">
+  <p>Total Price: {{ calculateTotalPrice() }}</p>
+  <button mat-raised-button color="primary" (click)="buyItems()" [disabled]="cartDataSource.data.length === 0">Buy</button>
+</div>
+
+
+<h2>Your Orders</h2>
+<mat-table [dataSource]="ordersDataSource" class="mat-table">
+  <!-- Definišite kolone za tabelu narudžbina -->
+  <ng-container matColumnDef="orderId">
+    <mat-header-cell *matHeaderCellDef>Order ID</mat-header-cell>
+    <mat-cell *matCellDef="let order">{{ order.orderId }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="products">
+    <mat-header-cell *matHeaderCellDef>Products</mat-header-cell>
+    <mat-cell *matCellDef="let order">{{ order.products }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="totalPrice">
+    <mat-header-cell *matHeaderCellDef>Total Price</mat-header-cell>
+    <mat-cell *matCellDef="let order">{{ order.totalPrice }}</mat-cell>
+  </ng-container>
+
+  <!-- Dodajte dodatne kolone po potrebi -->
+
+  <mat-header-row *matHeaderRowDef="ordersDisplayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ordersDisplayedColumns"></mat-row>
+</mat-table>

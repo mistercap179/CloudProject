@@ -1,0 +1,34 @@
+<div class="registration-container">
+  <h2>Register</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+    <mat-form-field class="form-group">
+      <label for="firstname">First Name</label>
+      <input matInput type="text" id="firstname" formControlName="Firstname" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-group">
+      <label for="lastname">Last Name</label>
+      <input matInput type="text" id="lastname" formControlName="LastName"  required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-group">
+      <label for="email">Email</label>
+      <input matInput type="email" id="email" formControlName="Email" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-group">
+      <label for="accountBalance">Account Balance</label>
+      <input matInput type="number" id="accountBalance" formControlName="AccountBalance" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form-group">
+      <label for="password">Password</label>
+      <input matInput type="password" id="password" formControlName="Password" required>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button type="submit" [disabled]="!registrationForm.valid">Update</button>
+  </form>
+
+  <div class="register-link">
+    <a (click)="login()">Go to Login</a>
+  </div>
