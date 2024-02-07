@@ -1,5 +1,6 @@
 ﻿using Common.FrontendModels;
 using Common.Models;
+using Microsoft.ServiceFabric.Data.Collections;
 using Microsoft.ServiceFabric.Services.Remoting;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,21 @@ namespace Common
     {
         [OperationContract]
         Task<List<ProductModel>> GetProducts();
+
+        [OperationContract]
+        Task<bool> Prepare(CreateOrderModel order);
+
+        [OperationContract]
+        Task<bool> Commit(CreateOrderModel order);
+
+        [OperationContract]
+        Task<bool> Rollback(CreateOrderModel order);
+
+        [OperationContract]
+        Task<Product> GetProductById(string productID, IReliableDictionary<string, Product> productDictionary);
+        
+        [OperationContract]
+        Task<List<Product>> GetProductsRollBack();
+
     }
 }

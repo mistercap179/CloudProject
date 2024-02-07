@@ -13,6 +13,8 @@ using Microsoft.ServiceFabric.Services.Client;
 using Common;
 using Common.Models;
 using Common.FrontendModels;
+using Azure.Messaging.WebPubSub;
+using Azure.Core;
 
 namespace ApiGateway
 {
@@ -24,6 +26,46 @@ namespace ApiGateway
         public ApiGateway(StatelessServiceContext context)
             : base(context)
         { }
+
+
+        public async Task<string> CreateOrder(CreateOrderModel order)
+        {
+
+            try
+            {
+                IOrder orderService = ServiceProxy.Create<IOrder>(new Uri("fabric:/OnlineShopServiceFabric/OrderService"), new ServicePartitionKey(1));
+
+
+                if (!await orderService.Prepare(order))
+                {
+                    return "Transaction preparation failed";
+                }
+
+                if (!await orderService.Commit(order))
+                {
+                    return "Transaction commit failed";
+                }
+
+                Order newOrder = ConvertToOrderModel(order);
+
+                string result = await orderService.CreateOrder(newOrder);
+
+                if (result == "Porudzbina kreirana")
+                {
+                    await SendNotification(order.User.UserId);
+                    return "Transaction successful";
+                }
+                else
+                {
+                    return String.Empty;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         public async Task<List<OrderModel>> GetOrders(string userId)
         {
@@ -57,9 +99,26 @@ namespace ApiGateway
 
         }
 
+        public async Task<UserModel> GetUser(string userId)
+        {
+            IUser userService = ServiceProxy.Create<IUser>(new Uri("fabric:/OnlineShopServiceFabric/UserService"), new ServicePartitionKey(1));
+
+            try
+            {
+                return await userService.GetUserById(userId);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
         public async Task<UserModel> Login(string email,string password)
         {
             IUser userService = ServiceProxy.Create<IUser>(new Uri("fabric:/OnlineShopServiceFabric/UserService"), new ServicePartitionKey(1));
+
 
             try
             {
@@ -123,6 +182,25 @@ namespace ApiGateway
             }
         }
 
+        public static Order ConvertToOrderModel(CreateOrderModel createOrderModel)
+        {
+            Order order = new Order
+            {
+                OrderId = Guid.NewGuid().ToString(),
+                UserId = createOrderModel.User.UserId,
+                TotalPrice = createOrderModel.TotalPrice,
+                Type = createOrderModel.Type
+            };
+
+            List<string> productStrings = createOrderModel.CartItems.Select(cartItem =>
+                $"{cartItem.Name}   x{cartItem.Quantity}   {cartItem.Price}$"
+            ).ToList();
+
+            order.Products = string.Join("\n", productStrings);
+
+            return order;
+        }
+
         /// <summary>
         /// Optional override to create listeners (e.g., TCP, HTTP) for this service replica to handle client or user requests.
         /// </summary>
@@ -151,6 +229,12 @@ namespace ApiGateway
 
                 await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
             }
+        }
+
+        public async Task SendNotification(string userId)
+        {
+            INotification notificationService = ServiceProxy.Create<INotification>(new Uri("fabric:/OnlineShopServiceFabric/NotifyService"));
+            await notificationService.SendNotification(userId);
         }
     }
 }

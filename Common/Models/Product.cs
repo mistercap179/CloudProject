@@ -15,5 +15,6 @@ namespace Common.Models
         public string Description { get; set; } = String.Empty;
         public double Price { get; set; }
         public int Quantity { get; set; }
+        public string Category { get; set; } = String.Empty;
     }
 }

@@ -34,5 +34,34 @@ namespace WebFrontend.Controllers
                 return StatusCode(500, new { message = "Internal Server Error" });
             }
         }
+
+        [HttpPost("createOrder")]
+        public async Task<IActionResult> CreateOrder([FromBody] CreateOrderModel order)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var result = await proxy.CreateOrder(order);
+
+                    if (result == "Transaction successful")
+                    {
+                        return Ok(new { message = "Order created successfully" });
+                    }
+                    else
+                    {
+                        return BadRequest(new { message = "Order creation failed" });
+                    }
+                }
+                else
+                {
+                    return BadRequest(new { message = "Invalid model state" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal Server Error" });
+            }
+        }
     }
 }

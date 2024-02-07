@@ -224,6 +224,9 @@ E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewa
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\mscorrc.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\msquic.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\ucrtbase.dll
+E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\Azure.Core.dll
+E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\Azure.Messaging.WebPubSub.dll
+E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\Microsoft.Bcl.AsyncInterfaces.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\Microsoft.Extensions.ObjectPool.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\Microsoft.ServiceFabric.Internal.Strings.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\Microsoft.ServiceFabric.Internal.dll
@@ -242,6 +245,7 @@ E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewa
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\Microsoft.ServiceFabric.Services.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\Microsoft.ServiceFabric.Services.Remoting.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\Newtonsoft.Json.dll
+E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\System.Memory.Data.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\System.Security.Cryptography.Pkcs.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\System.Security.Cryptography.Xml.dll
 E:\master\vol2\OnlineShop\OnlineShop\OnlineShopServiceFabric\pkg\Debug\ApiGatewayPkg\Code\System.ServiceModel.Primitives.dll

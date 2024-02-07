@@ -20,5 +20,8 @@ namespace Common.FrontendModels
         public double Price { get; set; }
         [DataMember]
         public int Quantity { get; set; }
+        [DataMember]
+        public string Category { get; set; } = String.Empty;
+
     }
 }

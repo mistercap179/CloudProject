@@ -15,5 +15,14 @@ namespace Common
     {
         [OperationContract]
         Task<List<OrderModel>> GetOrders(string userId);
+
+        [OperationContract]
+        Task<bool> Prepare(CreateOrderModel order);
+
+        [OperationContract]
+        Task<bool> Commit(CreateOrderModel order);
+
+        [OperationContract]
+        Task<string> CreateOrder(Order order);
     }
 }

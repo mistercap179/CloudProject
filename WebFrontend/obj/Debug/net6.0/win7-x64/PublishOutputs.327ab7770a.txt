@@ -355,6 +355,9 @@ E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTm
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\msquic.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\ucrtbase.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\aspnetcorev2_inprocess.dll
+E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\Azure.Core.dll
+E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\Azure.Messaging.WebPubSub.dll
+E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\Microsoft.Extensions.ObjectPool.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\Microsoft.OpenApi.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\Microsoft.ServiceFabric.Internal.Strings.dll
@@ -379,6 +382,7 @@ E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTm
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\System.Memory.Data.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\System.Security.Cryptography.Pkcs.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\System.Security.Cryptography.Xml.dll
 E:\master\vol2\OnlineShop\OnlineShop\WebFrontend\obj\Debug\net6.0\win7-x64\PubTmp\Out\System.ServiceModel.Primitives.dll

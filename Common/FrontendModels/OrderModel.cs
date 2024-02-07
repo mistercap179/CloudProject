@@ -18,5 +18,7 @@ namespace Common.FrontendModels
         public string Products { get; set; } = String.Empty;
         [DataMember]
         public double TotalPrice { get; set; }
+        [DataMember]
+        public string Type { get; set; } = String.Empty;
     }
 }

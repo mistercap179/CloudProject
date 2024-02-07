@@ -21,5 +21,21 @@ namespace Common
 
         [OperationContract]
         Task<UserModel> Update(User user);
+
+        [OperationContract]
+        Task<UserModel> GetUserById(string userId);
+
+        [OperationContract]
+        Task<bool> Prepare(CreateOrderModel order);
+
+        [OperationContract]
+        Task<bool> Commit(CreateOrderModel order);
+
+        [OperationContract]
+        Task<bool> Rollback(CreateOrderModel order);
+
+        [OperationContract]
+        Task<User> GetUserByIdRollBack(string userId);
+
     }
 }

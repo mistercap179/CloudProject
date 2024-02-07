@@ -27,7 +27,7 @@ namespace Common.DB
             await table.ExecuteAsync(operation);
         }
 
-        public async Task<IEnumerable<User>> GetUsersByEmailAndPasswordAsync(string email, string password)
+/*        public async Task<IEnumerable<User>> GetUsersByEmailAndPasswordAsync(string email, string password)
         {
             var allUsers = await GetAllEntitiesAsync("User");
             return allUsers.OfType<User>().Where(user => user.Email == email && user.Password == password);
@@ -39,18 +39,18 @@ namespace Common.DB
             return allOrders.OfType<Order>().Where(order => order.UserId == userId);
         }
 
-        public async Task<IEnumerable<User>> GetUsersByIdAsync(string userId)
+        public async Task<User> GetUserByIdAsync(string userId)
         {
             var allUsers = await GetAllEntitiesAsync("User");
-            return allUsers.OfType<User>().Where(user => user.UserId == userId);
+            return allUsers.OfType<User>().FirstOrDefault(user => user.UserId == userId);
         }
 
-        public async Task<IEnumerable<Product>> GetProductByIdAsync(string productId)
+        public async Task<Product> GetProductByIdAsync(string productId)
         {
             var allProdcts = await GetAllEntitiesAsync("Product");
-            return allProdcts.OfType<Product>().Where(product => product.ProductId == productId);
+            return allProdcts.OfType<Product>().FirstOrDefault(product => product.ProductId == productId);
         }
-
+*/
         public async Task<IEnumerable<T>> GetAllEntitiesAsync(string partitionKey)
         {
             var query = new TableQuery<T>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey));

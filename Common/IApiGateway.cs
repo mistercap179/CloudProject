@@ -28,6 +28,14 @@ namespace Common
         [OperationContract]
         Task<string> Register(Common.FrontendModels.UserModel user);
 
+        [OperationContract]
+        Task<string> CreateOrder(Common.FrontendModels.CreateOrderModel order);
+
+        [OperationContract]
+        Task<UserModel> GetUser(string userId);
+
+        [OperationContract]
+        Task SendNotification(string userId);
 
     }
 }

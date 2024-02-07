@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using Azure.Messaging.WebPubSub;
+using Common;
 using Common.FrontendModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace WebFrontend.Controllers
                     var user = await proxy.Login(email, password);
 
                     if (user == null)
-                        return BadRequest(new { message = "Invalid email or password" });
+                        return Ok(new { message = "Invalid email or password" });
 
 
                     return Ok(new { User = user });
@@ -44,6 +45,41 @@ namespace WebFrontend.Controllers
                 }
             }
         }
+
+
+        [HttpGet("getUser/{userId}")]
+        public async Task<IActionResult> GetUser(string userId)
+        {
+            try
+            {
+                UserModel user = await proxy.GetUser(userId);
+
+                if (user == null )
+                {
+                    return NotFound(new { message = "User not exist!" });
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal Server Error" });
+            }
+        }
+
+        [HttpGet("notification")]
+        public IActionResult GetNotificationUrl()
+        {
+            var connectionString = "Endpoint=https://cloudpubsub.webpubsub.azure.com;AccessKey=X0ijT/RBc08O/KZxgd5vpaMEOzAhhGL7XzdmpeuBdM0=;Version=1.0;";
+            var hubName = "Hub";
+            var serviceClient = new WebPubSubServiceClient(connectionString,
+                                                           hubName);
+
+            var uri = serviceClient.GetClientAccessUri(TimeSpan.FromHours(1));
+
+            return Ok(new { uri = uri });
+        }
+
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserModel newUser)

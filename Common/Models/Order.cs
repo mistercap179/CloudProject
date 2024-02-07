@@ -13,7 +13,8 @@ namespace Common.Models
         public string OrderId { get; set; } = String.Empty;
         public string UserId { get; set; } = String.Empty;
         public string Products { get; set; } = String.Empty;
-        public double TotalPrice { get; }
-        
+        public double TotalPrice { get; set; }
+        public string Type { get; set; } = String.Empty;
+
     }
 }
