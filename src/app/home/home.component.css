@@ -1,0 +1,44 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto; 
+    grid-column-gap: 10px;
+    background-color: #686868;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: rgba(221, 221, 221, 0.8);
+    border: 1px solid rgba(100, 100, 100, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  
+
+  .center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #8d8d8d;
+  }
+  
+  .form-group {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  /* Dodatna stilizacija za mat-form-field, možete prilagoditi prema potrebi */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  /* Stilizacija za button, možete prilagoditi prema potrebi */
+  

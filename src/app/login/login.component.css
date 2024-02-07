@@ -1,0 +1,35 @@
+/* .center-container {
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    margin-left: 600px;
+  } */
+
+  .center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Postavljanje visine na 100% visine prozora */
+    background-color: #8d8d8d;
+  }
+  
+  .form-group {
+    width: 100%;
+    max-width: 300px; /* Prilagodite maksimalnu širinu prema vašim potrebama */
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 10px; /* Dodavanje razmaka iznad linka za registraciju */
+  }
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  /* Stilizacija za button, možete prilagoditi prema potrebi */
+  button {
+    width: 100%;
+  }

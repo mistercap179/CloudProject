@@ -2,3 +2,5 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Add this to styles.css or styles.scss */
+@import '../node_modules/ngx-toastr/toastr.css';

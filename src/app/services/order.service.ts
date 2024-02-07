@@ -14,4 +14,9 @@ export class OrderService {
   getOrders(userId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/getOrders/${userId}`);
   }
+
+  buyOrder(body: any): Observable<any> {
+    console.log(body)
+    return this.http.post<any>(this.apiUrl+ '/createOrder', body);
+  }
 }

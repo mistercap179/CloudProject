@@ -1,4 +1,4 @@
-<div class="registration-container">
+<div class="center-container ">
   <h2>Register</h2>
   <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
     <mat-form-field class="form-group">
@@ -26,7 +26,7 @@
       <input matInput type="password" id="password" formControlName="Password" required>
     </mat-form-field>
     <br>
-    <button mat-raised-button type="submit" [disabled]="!registrationForm.valid">Update</button>
+    <button mat-raised-button type="submit" [disabled]="!registrationForm.valid">Register</button>
   </form>
 
   <div class="register-link">

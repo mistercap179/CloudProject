@@ -11,8 +11,6 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   login(body:any): Observable<any> {
-
-    console.log(body);
     return this.http.post<any>(this.baseUrl+ '/login', body);
   }
 
@@ -22,5 +20,10 @@ export class UserService {
 
   update(user: any): Observable<any> {
     return this.http.post<any>(this.baseUrl+ '/update', user);
+  }
+
+  
+  getUserById(userId : string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/getUser/${userId}`);
   }
 }

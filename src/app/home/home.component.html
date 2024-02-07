@@ -1,6 +1,8 @@
 
-  <h2>Update profile</h2>
+<div class="grid-container">
   
+  <div class="grid-item">
+<h2>Update profile</h2>
   <form [formGroup]="updateForm" (ngSubmit)="submitForm()">
     <mat-form-field class="form-group">
       <label for="firstname">First Name</label>
@@ -29,9 +31,22 @@
     <br>
     <button mat-raised-button type="submit" [disabled]="!updateForm.valid">Update</button>
   </form>
-
+  
 <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+</div>
 
+
+<div class="grid-item">
+  <h2>Products</h2>
+<mat-form-field>
+  <mat-label>Category Filter</mat-label>
+  <mat-select [(value)]="selectedCategory" (selectionChange)="applyCategoryFilter()">
+    <mat-option value="all">All</mat-option>
+    <mat-option *ngFor="let category of uniqueCategories" [value]="category">
+      {{ category }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
   <mat-table
     matSort
@@ -73,7 +88,15 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <!-- <span class="mobile-label">Fotografija:</span> -->
-      {{ element.price }}
+      {{ element.price }} $
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <!-- <span class="mobile-label">Fotografija:</span> -->
+      {{ element.category }}
     </mat-cell>
   </ng-container>
 
@@ -107,8 +130,9 @@
   >
   </mat-paginator>
 
-  
 
+
+<div *ngIf="calculateTotalPrice() > 0">
   <h2>Your Cart</h2>
 <mat-table [dataSource]="cartDataSource" class="mat-table">
   <ng-container matColumnDef="cartName">
@@ -147,12 +171,31 @@
   <mat-row *matRowDef="let row; columns: cartDisplayedColumns"></mat-row>
 </mat-table>
 
-<div class="cart-total">
+<!-- <div class="cart-total">
   <p>Total Price: {{ calculateTotalPrice() }}</p>
   <button mat-raised-button color="primary" (click)="buyItems()" [disabled]="cartDataSource.data.length === 0">Buy</button>
+  <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+</div> -->
+<div class="cart-total" >
+  <p>Total Price: {{ calculateTotalPrice() }} $</p>
+  <button mat-raised-button color="primary" (click)="buyItems()" [disabled]="cartDataSource.data.length === 0">Buy</button>
+  <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+</div>
 </div>
 
+<style>
+  .cart-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
+  /* Možete dodati dodatne stilove prema potrebi */
+  ngx-paypal {
+    transform: scale(0.8); /* Podesite faktor skaliranja prema potrebi */
+  }
+</style>
 <h2>Your Orders</h2>
 <mat-table [dataSource]="ordersDataSource" class="mat-table">
   <!-- Definišite kolone za tabelu narudžbina -->
@@ -168,7 +211,12 @@
 
   <ng-container matColumnDef="totalPrice">
     <mat-header-cell *matHeaderCellDef>Total Price</mat-header-cell>
-    <mat-cell *matCellDef="let order">{{ order.totalPrice }}</mat-cell>
+    <mat-cell *matCellDef="let order">{{ order.totalPrice }} $</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <mat-header-cell *matHeaderCellDef>Payment type</mat-header-cell>
+    <mat-cell *matCellDef="let order">{{ order.type }}</mat-cell>
   </ng-container>
 
   <!-- Dodajte dodatne kolone po potrebi -->
@@ -176,3 +224,4 @@
   <mat-header-row *matHeaderRowDef="ordersDisplayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: ordersDisplayedColumns"></mat-row>
 </mat-table>
+
